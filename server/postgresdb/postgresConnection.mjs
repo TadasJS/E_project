@@ -5,9 +5,7 @@ dotenv.config({ path: ".env.dev" });
 
 const { Pool } = pg;
 
-// console.log(pg)
-
-const pool = new Pool({
+export const pool = new Pool({
   user: process.env.POSTGRES_USER,
   host: process.env.POSTGRES_HOST,
   database: process.env.POSTGRES_DB,
