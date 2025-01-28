@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import { connectDB } from "./postgresdb/postgresConnection.mjs";
+import { api } from "./routes/index.mjs";
 
 dotenv.config({ path: ".env.dev" });
 
@@ -9,7 +11,6 @@ async function intializeDB() {
     await connectDB("DB connected successfully");
   } catch (error) {
     console.error("DB intialization failed", error);
-    process.exit(1);
   }
 }
 
@@ -23,8 +24,13 @@ async function startServer() {
     res.status(200).json({ status: "ok", msg: "Server is healty" });
   });
 
+
+  app.use(cors());
+  app.use(express.json());
+  app.use("/api", api);
+
   app.get("*", (req, res) => {
-    res.status(404).json({ status: "err", msg: "page not found" });
+    res.status(404).json({ status: "err", msg: " 404 page not found" });
   });
 
   app.use((req, res, next) => {
