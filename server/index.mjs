@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from 'cors';
+import cors from "cors";
 import { connectDB } from "./postgresdb/postgresConnection.mjs";
 import { api } from "./routes/index.mjs";
 
@@ -26,7 +26,7 @@ async function startServer() {
 
   app.use(cors());
   app.use(express.json());
-  app.use('/api', api);
+  app.use("/api", api);
 
   app.get("*", (req, res) => {
     res.status(404).json({ status: "err", msg: " 404 page not found" });
