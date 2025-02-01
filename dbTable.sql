@@ -54,6 +54,14 @@ foto varchar(50) NOT NULL,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
+CREATE TABLE rating (
+  id SERIAL PRIMARY KEY NOT NULL,
+  proc_rating INT NOT NULL,
+  procedure_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (procedure_id) REFERENCES procedure (id));
+
 
 INSERT INTO procedure (name, category, time, foto)
 VALUES ('mot plauku kirpimas', 'Plauku kirpimas', '01:00', 'no foto'),
