@@ -1,4 +1,4 @@
-import { registerModel } from "../modules/registerModel.mjs";
+import { registerModel } from "../models/registerModel.mjs";
 
 const registerController = {
   postUsers: async (req, res) => {
