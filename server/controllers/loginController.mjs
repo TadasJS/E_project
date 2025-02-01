@@ -1,4 +1,4 @@
-import { loginModel } from "../modules/loginModel.mjs";
+import { loginModel } from "../models/loginModel.mjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 

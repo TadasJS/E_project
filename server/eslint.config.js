@@ -1,54 +1,54 @@
-import eslintPluginPrettier from "eslint-plugin-prettier";
-import eslintConfigPrettier from "eslint-config-prettier";
+// import eslintPluginPrettier from "eslint-plugin-prettier";
+// import eslintConfigPrettier from "eslint-config-prettier";
 
-import pkg from "@eslint/js";
-const { configs: eslintRecommended } = pkg;
+// import pkg from "@eslint/js";
+// const { configs: eslintRecommended } = pkg;
 
-import prettierRecommended from "eslint-plugin-prettier/recommended";
+// import prettierRecommended from "eslint-plugin-prettier/recommended";
 
-export default [
-  eslintRecommended.recommended,
+// export default [
+//   eslintRecommended.recommended,
 
-  prettierRecommended,
+//   prettierRecommended,
 
-  eslintConfigPrettier,
+//   eslintConfigPrettier,
 
-  {
-    files: ["**/*.js", "**/*.mjs"],
+//   {
+//     files: ["**/*.js", "**/*.mjs"],
 
-    plugins: {
-      prettier: eslintPluginPrettier,
-    },
+//     plugins: {
+//       prettier: eslintPluginPrettier,
+//     },
 
-    languageOptions: {
-      globals: {
-        console: "readonly",
-        process: "readonly",
-      },
-    },
+//     languageOptions: {
+//       globals: {
+//         console: "readonly",
+//         process: "readonly",
+//       },
+//     },
 
-    rules: {
-      "prettier/prettier": "error",
+//     rules: {
+//       "prettier/prettier": "error",
 
-      "no-console": "off",
+//       "no-console": "off",
 
-      eqeqeq: "error",
+//       eqeqeq: "error",
 
-      curly: "error",
+//       curly: "error",
 
-      "comma-dangle": ["error", "always-multiline"],
+//       "comma-dangle": ["error", "always-multiline"],
 
-      "comma-spacing": ["error", { before: false, after: true }],
+//       "comma-spacing": ["error", { before: false, after: true }],
 
-      "comma-style": ["error", "last"],
+//       "comma-style": ["error", "last"],
 
-      indent: ["error", 2],
+//       indent: ["error", 2],
 
-      quotes: ["error", "double"],
+//       quotes: ["error", "double"],
 
-      semi: ["error", "always"],
+//       semi: ["error", "always"],
 
-      "object-curly-spacing": ["error", "always"],
-    },
-  },
-];
+//       "object-curly-spacing": ["error", "always"],
+//     },
+//   },
+// ];
