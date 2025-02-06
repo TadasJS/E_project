@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export function Login() {
-
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -13,8 +12,8 @@ export function Login() {
   const [passwordErr, setPasswordErr] = useState('');
   const [passwordValid, setPasswordValid] = useState(false);
 
-  const [formErr, setFormErr] = useState('')
-  const [formValid, setFormValid] = useState('')
+  const [formErr, setFormErr] = useState('');
+  const [formValid, setFormValid] = useState('');
 
   const symbList4 = '`~!#$%^&*()_+=[]{}|-":;?/><,\'';
   const pwdFilter = /^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W)\w.{5,20}\w)/;
@@ -23,7 +22,7 @@ export function Login() {
   function updateEmail(e) {
     setEmail(e.target.value);
 
-    if (!email || !emailFilter.test(email)) {
+    if (!e.target.value || !emailFilter.test(e.target.value)) {
       setEmailErr(`field can't be empty, email format name@example.com`);
       setEmailValid(false);
       return;
@@ -43,7 +42,7 @@ export function Login() {
   function updatePassword(e) {
     setPassword(e.target.value);
 
-    if (!password || password.length < 7 || !pwdFilter.test(password)) {
+    if (!e.target.value || e.target.value.length < 8 || !pwdFilter.test(e.target.value)) {
       setPasswordErr(
         `The password must consist of min 8 charackters,f one lowercase letter, one uppercase letter, one symbol and one number.`,
       );
@@ -57,7 +56,7 @@ export function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+console.log(email, password)
     if (!email || !emailFilter.test(email)) {
       setEmailErr(`field can't be empty`);
       setEmailValid(false);
@@ -86,32 +85,34 @@ export function Login() {
       setPasswordValid(true);
     }
 
-    axios.
-    post('http://localhost:3000/api/user/login', {
+    axios
+      .post('http://localhost:3000/api/user/login', {
         email: email,
         password: password,
-    })
-    .then((res)=> {console.log(res.data)
-        if(res.data.status === 'ok'){
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status === 'ok') {
           setFormValid(res.data.msg);
           setFormErr('');
         }
         setTimeout(() => {
-            alert(res.data.msg);
-          }, 1000);
-        })
-        .then(() => {
-          setTimeout(() => {
-            navigate('/profile');
-          }, 2000);
-        })
-    .catch((error)=> {console.error(error)
+          alert(res.data.msg);
+        }, 1000);
+      })
+      .then(() => {
+        setTimeout(() => {
+          navigate('/profile');
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error(error);
 
         if (error.response.data.status === 'err') {
-            setFormErr(error.response.data.msg);
-            setFormValid('');
-          }
-    })
+          setFormErr(error.response.data.msg);
+          setFormValid('');
+        }
+      });
   }
   return (
     <div className="container" style={{ width: '25rem' }}>
@@ -120,18 +121,18 @@ export function Login() {
         <h1 className=" mb-3">Please Login</h1>
 
         {formValid && (
-            <div className="ms-5 me-5 alert alert-success " role="alert">
-              <h4 className="alert-heading">Well done!</h4>
-              <p className="mb-0">{formValid}</p>
-            </div>
-          )}
+          <div className="ms-5 me-5 alert alert-success " role="alert">
+            <h4 className="alert-heading">Well done!</h4>
+            <p className="mb-0">{formValid}</p>
+          </div>
+        )}
 
-          {formErr && (
-            <div className="ms-5 me-5 alert alert-danger " role="alert">
-              <h4 className="alert-heading">Error message</h4>
-              <p className="mb-0">{formErr}</p>
-            </div>
-          )}
+        {formErr && (
+          <div className="ms-5 me-5 alert alert-danger " role="alert">
+            <h4 className="alert-heading">Error message</h4>
+            <p className="mb-0">{formErr}</p>
+          </div>
+        )}
 
         <div className="form-floating">
           <input

@@ -30,7 +30,7 @@ export function Register() {
   // i onchange funkcija dedu tam kad iskarto validuotu inputa
   function updateUsername(e) {
     setUsername(e.target.value);
-    if (!username || username.length < 4 || username.length > 20) {
+    if (!e.target.value || e.target.value.length < 5 || e.target.value.length > 20) {
       setUsernameErr(`field can't be empty, min 5 max 20 symbols`);
       setUsernameValid(false);
       return;
@@ -40,7 +40,7 @@ export function Register() {
     }
 
     for (const i of symbList3) {
-      for (const j of username) {
+      for (const j of e.target.value) {
         if (i === j) {
           return setUsernameErr(`can't use symbols, available numbers and symbols _ . `);
         }
@@ -50,7 +50,7 @@ export function Register() {
   function updateEmail(e) {
     setEmail(e.target.value);
 
-    if (!email || !emailFilter.test(email)) {
+    if (!e.target.value || !emailFilter.test(e.target.value)) {
       setEmailErr(`field can't be empty, email format name@example.com`);
       setEmailValid(false);
       return;
@@ -60,7 +60,7 @@ export function Register() {
     }
 
     for (const i of symbList4) {
-      for (const j of email) {
+      for (const j of e.target.value) {
         if (i === j) {
           return setEmailErr(`can't use symbols`);
         }
@@ -69,7 +69,7 @@ export function Register() {
   }
   function updatePassword(e) {
     setPassword(e.target.value);
-    if (!password || password.length < 7 || !pwdFilter.test(password)) {
+    if (!e.target.value || e.target.value.length < 8 || !pwdFilter.test(e.target.value)) {
       setPasswordErr(
         `The password must consist of min 8 charackters, one lowercase letter, one uppercase letter, one symbol and one number.`,
       );
@@ -82,7 +82,7 @@ export function Register() {
   }
   function updateRepass(e) {
     setRepass(e.target.value);
-    if (!repass || repass.length < 7 || !pwdFilter.test(repass)) {
+    if (!e.target.value || e.target.value.length < 8 || !pwdFilter.test(e.target.value)) {
       setRepassErr(`Password must consist of one lowercase letter, one uppercase letter, one symbol and one number.`);
       setRepassValid(false);
       return;
@@ -99,7 +99,7 @@ export function Register() {
 
     // handleSubmit validacijos pradzia
 
-    if (!username || username.length < 4 || username.length > 20) {
+    if (!username || username.length < 5 || username.length > 20) {
       setUsernameErr(`field can't be empty, min 5 max 20 symbols`);
       setUsernameValid(false);
       return;
