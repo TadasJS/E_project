@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 
 export function Login() {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  const ctx = useContext(UserContext);
+  const {loginUser, person} = ctx;
+  
+  const [user, setUser] = useState()
   const [email, setEmail] = useState('');
   const [emailErr, setEmailErr] = useState('');
   const [emailValid, setEmailValid] = useState(false);
@@ -54,6 +60,14 @@ export function Login() {
     }
   }
 
+  useEffect(() => {
+    setUser({
+        email: email,
+        password: password
+    })
+
+},[email, password])
+
   function handleSubmit(e) {
     e.preventDefault();
 console.log(email, password)
@@ -85,13 +99,10 @@ console.log(email, password)
       setPasswordValid(true);
     }
 
-    axios
-      .post('http://localhost:3000/api/user/login', {
-        email: email,
-        password: password,
-      })
-      .then((res) => {
-        console.log(res.data);
+    console.log(user)
+    loginUser(user)
+
+   
         if (res.data.status === 'ok') {
           setFormValid(res.data.msg);
           setFormErr('');
@@ -99,20 +110,11 @@ console.log(email, password)
         setTimeout(() => {
           alert(res.data.msg);
         }, 1000);
-      })
-      .then(() => {
-        setTimeout(() => {
-          navigate('/profile');
-        }, 2000);
-      })
-      .catch((error) => {
-        console.error(error);
+  
+      
+   
 
-        if (error.response.data.status === 'err') {
-          setFormErr(error.response.data.msg);
-          setFormValid('');
-        }
-      });
+      
   }
   return (
     <div className="container" style={{ width: '25rem' }}>
