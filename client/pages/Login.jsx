@@ -43,7 +43,7 @@ export function Login() {
   function updatePassword(e) {
     setPassword(e.target.value);
 
-    if (!password || password.length < 8 || !pwdFilter.test(password)) {
+    if (!password || password.length < 7 || !pwdFilter.test(password)) {
       setPasswordErr(
         `The password must consist of min 8 charackters,f one lowercase letter, one uppercase letter, one symbol and one number.`,
       );
