@@ -12,7 +12,7 @@ export function AdminLayout () {
         <>     
           <Header />        
         <main>
-        {(ctx.user.role_name === '' ) && <h1>Sita puslapi gali matyti tik prisijunges Administratorius</h1>}
+        {(ctx.user.role_name === '' || ctx.user.role_name === 'user') && <h1>Sita puslapi gali matyti tik prisijunges Administratorius</h1>}
         {(ctx.user.role_name === 'admin') && <Outlet />}
         </main>
           <Footer/>

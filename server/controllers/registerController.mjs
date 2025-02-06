@@ -1,9 +1,12 @@
+import bcrypt from 'bcrypt';
 import { registerModel } from "../models/registerModel.mjs";
 
 const registerController = {
   postUsers: async (req, res) => {
     const { username, email, password, role } = req.body;
     
+    const hash = await bcrypt.hash(password, 13)
+
     try {
       const checkUser = await registerModel.checkUser(email);
 
@@ -16,7 +19,7 @@ const registerController = {
       const createUser = await registerModel.createNewUser(
         username,
         email,
-        password,
+        hash,
         role,
       );
 

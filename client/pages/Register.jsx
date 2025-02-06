@@ -159,7 +159,7 @@ export function Register() {
         email: email,
         username: username,
         password: password,
-        role: 1,
+        role: 2,
       })
       .then((res) => {
         console.log(res.data.status);

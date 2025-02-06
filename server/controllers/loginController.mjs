@@ -1,4 +1,5 @@
 import { loginModel } from "../models/loginModel.mjs";
+import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
@@ -10,7 +11,16 @@ const loginController = {
 
     const checkLoginValues = await loginModel.checkLoginUser(email, password);
 
-    if (!checkLoginValues) {
+    if (checkLoginValues === 0) {
+      return res.status(409).json({
+        status: "err",
+        msg: "Check your credentials, user not loged in.",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password, checkLoginValues.password);
+
+    if (!isMatch) {
       return res.status(409).json({
         status: "err",
         msg: "Check your credentials, user not loged in.",
