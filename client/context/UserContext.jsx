@@ -29,21 +29,23 @@ export function UserProvider ({children}) {
     
     
     function loginUser(person) {      
-      
+        
+        try {            
             axios
-            .post ('http://localhost:3000/api/users/login', person)
+            .post ('http://localhost:3000/api/user/login', person)
             .then((res) => {
                 console.log('cia response data...',res.data);
+                setResponse(res.data)
                 localStorage.setItem('token', res.data.token);
                 const decoded = jwtDecode(res.data.token.toString());
                 setUser({...user, email: decoded.email, username:decoded.username, role_name: decoded.role_name });
                 localStorage.setItem('user_data', JSON.stringify(decoded));
                 navigate('/profile')
             })
-            .catch ((error) => {
-                console.error(error)
-                
-            })     
+        } catch (error) {
+           console.error(error) 
+        }
+             
     }
     
     function logoutUser() {

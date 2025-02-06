@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { UserContext } from '../context/UserContext';
+import { useEffect } from 'react';
 
 export function Login() {
-
   const navigate = useNavigate();
+  const ctx = useContext(UserContext);
+  const { loginUser, response } = ctx;
 
+  const [user, setUser] = useState();
   const [email, setEmail] = useState('');
   const [emailErr, setEmailErr] = useState('');
   const [emailValid, setEmailValid] = useState(false);
@@ -13,8 +17,8 @@ export function Login() {
   const [passwordErr, setPasswordErr] = useState('');
   const [passwordValid, setPasswordValid] = useState(false);
 
-  const [formErr, setFormErr] = useState('')
-  const [formValid, setFormValid] = useState('')
+  const [formErr, setFormErr] = useState('');
+  const [formValid, setFormValid] = useState('');
 
   const symbList4 = '`~!#$%^&*()_+=[]{}|-":;?/><,\'';
   const pwdFilter = /^((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W)\w.{5,20}\w)/;
@@ -23,7 +27,7 @@ export function Login() {
   function updateEmail(e) {
     setEmail(e.target.value);
 
-    if (!email || !emailFilter.test(email)) {
+    if (!e.target.value || !emailFilter.test(e.target.value)) {
       setEmailErr(`field can't be empty, email format name@example.com`);
       setEmailValid(false);
       return;
@@ -33,7 +37,7 @@ export function Login() {
     }
 
     for (const i of symbList4) {
-      for (const j of email) {
+      for (const j of e.target.value) {
         if (i === j) {
           return setEmailErr(`can't use symbols`);
         }
@@ -43,7 +47,7 @@ export function Login() {
   function updatePassword(e) {
     setPassword(e.target.value);
 
-    if (!password || password.length < 8 || !pwdFilter.test(password)) {
+    if (!e.target.value || e.target.value.length < 8 || !pwdFilter.test(e.target.value)) {
       setPasswordErr(
         `The password must consist of min 8 charackters,f one lowercase letter, one uppercase letter, one symbol and one number.`,
       );
@@ -54,6 +58,13 @@ export function Login() {
       setPasswordValid(true);
     }
   }
+
+  useEffect(() => {
+    setUser({
+      email: email,
+      password: password,
+    });
+  }, [email, password]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -86,32 +97,25 @@ export function Login() {
       setPasswordValid(true);
     }
 
-    axios.
-    post('http://localhost:3000/api/user/login', {
-        email: email,
-        password: password,
-    })
-    .then((res)=> {console.log(res.data)
-        if(res.data.status === 'ok'){
-          setFormValid(res.data.msg);
-          setFormErr('');
-        }
-        setTimeout(() => {
-            alert(res.data.msg);
-          }, 1000);
-        })
-        .then(() => {
-          setTimeout(() => {
-            navigate('/profile');
-          }, 2000);
-        })
-    .catch((error)=> {console.error(error)
+    console.log('logino response...', response);
+    loginUser(user);
 
-        if (error.response.data.status === 'err') {
-            setFormErr(error.response.data.msg);
-            setFormValid('');
-          }
-    })
+    // if(res.data.status === 'ok'){
+    //   setFormValid(res.data.msg);
+    //   setFormErr('');
+    // }
+    // setTimeout(() => {
+    //     alert(res.data.msg);
+    //   }, 1000);
+
+    //   setTimeout(() => {
+    //     navigate('/profile');
+    //   }, 2000);
+
+    // if (error.response.data.status === 'err') {
+    //     setFormErr(error.response.data.msg);
+    //     setFormValid('');
+    //   }
   }
   return (
     <div className="container" style={{ width: '25rem' }}>
@@ -120,18 +124,18 @@ export function Login() {
         <h1 className=" mb-3">Please Login</h1>
 
         {formValid && (
-            <div className="ms-5 me-5 alert alert-success " role="alert">
-              <h4 className="alert-heading">Well done!</h4>
-              <p className="mb-0">{formValid}</p>
-            </div>
-          )}
+          <div className="ms-5 me-5 alert alert-success " role="alert">
+            <h4 className="alert-heading">Well done!</h4>
+            <p className="mb-0">{formValid}</p>
+          </div>
+        )}
 
-          {formErr && (
-            <div className="ms-5 me-5 alert alert-danger " role="alert">
-              <h4 className="alert-heading">Error message</h4>
-              <p className="mb-0">{formErr}</p>
-            </div>
-          )}
+        {formErr && (
+          <div className="ms-5 me-5 alert alert-danger " role="alert">
+            <h4 className="alert-heading">Error message</h4>
+            <p className="mb-0">{formErr}</p>
+          </div>
+        )}
 
         <div className="form-floating">
           <input
