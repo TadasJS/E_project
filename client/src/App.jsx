@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { BasicLayout } from '../layouts/BasicLayout';
-import { UserLayout } from '../layouts/UserLayout';
-import { Home } from '../pages/Home';
-import { NoPage } from '../pages/NoPage';
+import { BasicLayout } from './layouts/BasicLayout';
+import { UserLayout } from './layouts/UserLayout';
+import { AdminLayout } from './layouts/AdminLayout';
+import { Home } from './pages/Home';
+import { NoPage } from './pages/NoPage';
 import './App.css';
-import { Login } from '../pages/Login';
-import { Register } from '../pages/Register';
-import { UserProfile } from '../pages/UserProfile';
-import { UserProvider } from '../context/UserContext';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { UserProfile } from './pages/UserProfile';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   return (
@@ -23,8 +24,9 @@ function App() {
           <Route Component={UserLayout}>
             <Route path="/profile" element={<UserProfile />} />
           </Route>
-          {/* <Route Component={AdminLayout}>
-              </Route> */}
+          <Route Component={AdminLayout}>
+            <Route path="/profile" element={<UserProfile />} />
+          </Route>
         </Routes>
       </UserProvider>
     </BrowserRouter>

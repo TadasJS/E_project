@@ -10,9 +10,8 @@ const loginModel = {
             JOIN users_secrets ON users.id = users_secrets.userid
             JOIN users_roles ON users_secrets.roleid = users_roles.id
             WHERE email = $1 and password = $2;`,
-        [email, password],
+        [email, password]
       );
-
       return isUserAvailable.rows[0];
     } catch (error) {
       console.error(error);

@@ -7,7 +7,6 @@ dotenv.config({ path: "../.env.dev" });
 const loginController = {
   postLogin: async (req, res) => {
     const { email, password } = req.body;
-
     const checkLoginValues = await loginModel.checkLoginUser(email, password);
 
     if (!checkLoginValues) {
