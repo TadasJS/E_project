@@ -13,7 +13,7 @@ const loginController = {
     if (!checkLoginValues) {
       return res.status(409).json({
         status: "err",
-        msg: "Check your credentials, user is not loged in.",
+        msg: "Check your credentials, user not loged in.",
       });
     }
 

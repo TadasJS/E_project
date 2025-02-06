@@ -10,12 +10,12 @@ const api = express.Router();
 api.use("/user/login", login);
 api.use("/user/register", users);
 
-api.use("/procedure", procedure)
-api.use('/procedreg', procedReg)
-api.use('/rating', rating)
+api.use("/procedure", procedure);
+api.use('/procedreg', procedReg);
+api.use('/rating', rating);
 
 api.use("/", (req, res) => {
-  res.status(200).json({ status: "ok", msg: "page not created yet" });
+  res.status(200).json({ status: "ok", msg: " API SERVER : page not created yet" });
 });
 
 export { api };

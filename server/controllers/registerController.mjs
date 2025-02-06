@@ -3,7 +3,7 @@ import { registerModel } from "../models/registerModel.mjs";
 const registerController = {
   postUsers: async (req, res) => {
     const { username, email, password, role } = req.body;
-
+    
     try {
       const checkUser = await registerModel.checkUser(email);
 
