@@ -74,3 +74,6 @@ INSERT INTO advert (title, description, price, photo, user_id, category_id )
 VALUES ('zaisliukas', 'geras zaisliukas', 3.5, 'image_url', 1, 1 ),
 ('baldai', 'geri baldai', 20.5, 'image_url', 1, 2 ),
 ('masina', 'geras masina', 3000, 'image_url', 1, 3 );
+
+INSERT INTO comments (comment, user_id, advert_id)
+VALUES ('noriu pirkti sita zaisla', 1, 1), ('mane sudomino sitas automoblis', 1, 3) 
