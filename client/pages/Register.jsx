@@ -190,75 +190,92 @@ export function Register() {
 
   return (
     <>
+
+<div class="regColor container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+
+      <form onSubmit={handleSubmit}>
+       
+       <h1 className="mb-3">Please Register</h1>
+
+       {formValid && (
+         <div className="ms-5 me-5 alert alert-success " role="alert">
+           <h4 className="alert-heading">Well done!</h4>
+           <p className="mb-0">{formValid}</p>
+         </div>
+       )}
+
+       {formErr && (
+         <div className="ms-5 me-5 alert alert-danger " role="alert">
+           <h4 className="alert-heading">Error message</h4>
+           <p className="mb-0">{formErr}</p>
+         </div>
+       )}
+
+       <div className="form-floating">
+         <input
+           type="text"
+           onChange={updateUsername}
+           className={`form-control ${usernameValid ? 'is-valid' : ''} ${usernameErr ? 'is-invalid' : ''}  `}
+           id="floatingInput1"
+           placeholder="name@example.com"
+         />
+         <label>User Name</label>
+         <div className="invalid-feedback">{usernameErr}</div>
+       </div>
+       <div className="form-floating">
+         <input
+           type="email"
+           onChange={updateEmail}
+           className={`form-control ${emailValid ? 'is-valid' : ''} ${emailErr ? 'is-invalid' : ''}  `}
+           id="floatingInput"
+           placeholder="name@example.com"
+         />
+         <label>Email address</label>
+         <div className="invalid-feedback">{emailErr}</div>
+       </div>
+       <div className="form-floating">
+         <input
+           type="password"
+           onChange={updatePassword}
+           className={`form-control ${passwordValid ? 'is-valid' : ''} ${passwordErr ? 'is-invalid' : ''}  `}
+           id="floatingPassword"
+           placeholder="Password"
+         />
+         <label>Password</label>
+         <div className="invalid-feedback">{passwordErr}</div>
+       </div>
+       <div className="form-floating">
+         <input
+           type="password"
+           onChange={updateRepass}
+           className={`form-control ${repassValid ? 'is-valid' : ''} ${repassErr ? 'is-invalid' : ''}  `}
+           id="floatingPasswordr"
+           placeholder="Password"
+         />
+         <label>Repeat password</label>
+         <div className="invalid-feedback">{repassErr}</div>
+       </div>
+
+       <br />
+       <button className="btn btn-primary w-100 py-2" type="submit">
+         Register
+       </button>
+     </form>
+       
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Responsive left-aligned hero with image</h1>
+        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        </div>
+      </div>
+    </div>
+  </div>
+
       <div className="container" style={{ width: '25rem' }}>
-        <form onSubmit={handleSubmit}>
-          <img className="mb-4" src="" alt="" width="72" height="57" />
-          <h1 className="mb-3">Please Register</h1>
-
-          {formValid && (
-            <div className="ms-5 me-5 alert alert-success " role="alert">
-              <h4 className="alert-heading">Well done!</h4>
-              <p className="mb-0">{formValid}</p>
-            </div>
-          )}
-
-          {formErr && (
-            <div className="ms-5 me-5 alert alert-danger " role="alert">
-              <h4 className="alert-heading">Error message</h4>
-              <p className="mb-0">{formErr}</p>
-            </div>
-          )}
-
-          <div className="form-floating">
-            <input
-              type="text"
-              onChange={updateUsername}
-              className={`form-control ${usernameValid ? 'is-valid' : ''} ${usernameErr ? 'is-invalid' : ''}  `}
-              id="floatingInput1"
-              placeholder="name@example.com"
-            />
-            <label>User Name</label>
-            <div className="invalid-feedback">{usernameErr}</div>
-          </div>
-          <div className="form-floating">
-            <input
-              type="email"
-              onChange={updateEmail}
-              className={`form-control ${emailValid ? 'is-valid' : ''} ${emailErr ? 'is-invalid' : ''}  `}
-              id="floatingInput"
-              placeholder="name@example.com"
-            />
-            <label>Email address</label>
-            <div className="invalid-feedback">{emailErr}</div>
-          </div>
-          <div className="form-floating">
-            <input
-              type="password"
-              onChange={updatePassword}
-              className={`form-control ${passwordValid ? 'is-valid' : ''} ${passwordErr ? 'is-invalid' : ''}  `}
-              id="floatingPassword"
-              placeholder="Password"
-            />
-            <label>Password</label>
-            <div className="invalid-feedback">{passwordErr}</div>
-          </div>
-          <div className="form-floating">
-            <input
-              type="password"
-              onChange={updateRepass}
-              className={`form-control ${repassValid ? 'is-valid' : ''} ${repassErr ? 'is-invalid' : ''}  `}
-              id="floatingPasswordr"
-              placeholder="Password"
-            />
-            <label>Repeat password</label>
-            <div className="invalid-feedback">{repassErr}</div>
-          </div>
-
-          <br />
-          <button className="btn btn-primary w-100 py-2" type="submit">
-            Register
-          </button>
-        </form>
+       
       </div>
     </>
   );

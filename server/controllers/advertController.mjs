@@ -45,7 +45,6 @@ const advertController = {
   updateAdvert: async (req, res) => {
     const { id } = req.params;
     const { title, description, price, photo, user_id, category_id } = req.body;
-    console.log(id, title);
     try {
       const updateAdvert = await advertModel.updateAdvert(
         title,

@@ -5,6 +5,7 @@ import { AdminLayout } from '../layouts/AdminLayout';
 import { Home } from '../pages/Home';
 import { NoPage } from '../pages/NoPage';
 import './App.css';
+import '../../client/pages/PageStyle.css';
 import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
 import { UserProfile } from '../pages/UserProfile';
@@ -17,15 +18,16 @@ function App() {
       <UserProvider>
         <Routes>
           <Route Component={BasicLayout}>
-            <Route index path="/" element={<Home />} />
+            <Route index path="/" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
           </Route>
           <Route Component={UserLayout}>
+            <Route path="/home" element={<Home />} />
             <Route path="/profile" element={<UserProfile />} />
           </Route>
           <Route Component={AdminLayout}>
+            <Route path="/home" element={<Home />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/admin" element={<Admin />} />
         </Route>

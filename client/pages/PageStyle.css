@@ -1,0 +1,21 @@
+.headerColor{
+    background-color: rgb(227, 233, 235);
+}
+
+.footerColor{
+    background-color: rgb(227, 233, 235);
+}
+
+.regColor{
+   
+    background-color: rgb(176, 217, 231);
+    height: 1000px;
+
+}
+
+.cardStyle{
+    background-color: bisque;
+    border-radius: 20px;
+    padding: 10px;
+
+}

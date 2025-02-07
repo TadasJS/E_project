@@ -4,8 +4,7 @@ const advertModel = {
     getAdvert: async () => {
        try {
            const getAdvertList = await pool.query(`SELECT * FROM advert ORDER BY id`)
-            console.log(getAdvertList.rows);
-            
+                  
             return getAdvertList.rows
         
        } catch (error) {

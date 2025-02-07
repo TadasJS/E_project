@@ -1,8 +1,16 @@
+import { AdvertList } from "./AdvertList"
 
 
 export function UserProfile() {
+
     return(
-        <h1>Cia bus user profile puslapis</h1>
+        <>
+        <h1  >Geriausiu skelbimu puslapis</h1>
+        <br />
+        <br />
+        <AdvertList />
+               
+        </>
     )
 
 }

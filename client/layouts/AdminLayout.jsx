@@ -11,7 +11,7 @@ export function AdminLayout () {
     return(
         <>     
           <Header />        
-        <main>
+        <main className="regColor">
         {(ctx.user.role_name === '' || ctx.user.role_name === 'user') && <h1>Sita puslapi gali matyti tik prisijunges Administratorius</h1>}
         {(ctx.user.role_name === 'admin') && <Outlet />}
         </main>

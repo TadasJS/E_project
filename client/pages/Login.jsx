@@ -100,25 +100,10 @@ export function Login() {
     console.log('logino response...', response);
     loginUser(user);
 
-    // if(res.data.status === 'ok'){
-    //   setFormValid(res.data.msg);
-    //   setFormErr('');
-    // }
-    // setTimeout(() => {
-    //     alert(res.data.msg);
-    //   }, 1000);
 
-    //   setTimeout(() => {
-    //     navigate('/profile');
-    //   }, 2000);
-
-    // if (error.response.data.status === 'err') {
-    //     setFormErr(error.response.data.msg);
-    //     setFormValid('');
-    //   }
   }
   return (
-    <div className="container" style={{ width: '25rem' }}>
+    <div className="container pb-5" style={{ width: '25rem' }}>
       <form onSubmit={handleSubmit}>
         <img className="mb-4" src="" alt="" width="72" height="57" />
         <h1 className=" mb-3">Please Login</h1>
@@ -161,7 +146,7 @@ export function Login() {
         </div>
 
         <br />
-        <button className="btn btn-primary w-100 py-2" type="submit">
+        <button className="btn btn-primary w-100 " type="submit">
           Login
         </button>
       </form>

@@ -6,7 +6,7 @@ export function BasicLayout () {
     return(
         <>     
           <Header />        
-        <main>
+        <main className="regColor">
           <Outlet />
         </main>
           <Footer/>
